@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class C03_Odev {
+public class C03_GetPageSource {
     WebDriver driver;
     @Before
     public void setUp() throws Exception {
