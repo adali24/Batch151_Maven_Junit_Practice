@@ -16,7 +16,7 @@ import java.time.Duration;
 import java.util.List;
 
 
-public class day02_practice {
+public class C02_Practice {
 
         WebDriver driver;
 
