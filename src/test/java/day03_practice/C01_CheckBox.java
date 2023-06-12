@@ -34,14 +34,14 @@ public class C01_CheckBox {
         driver.findElement(By.xpath("(//div[@class='action-wrapper'])[3]")).click();
         // Ana sayfaya geri dönme
         driver.switchTo().defaultContent();
-        // checkbox elementlerini locate edin
 
-        // checkbox1 ve checkbox3  secili degil ise secin
+
+        // checkbox elementlerini locate edin
         WebElement checkBox1 = driver.findElement(By.xpath("(//*[@type='checkbox'])[1]"));
         WebElement checkBox2 = driver.findElement(By.xpath("(//*[@type='checkbox'])[2]"));
         WebElement checkBox3 = driver.findElement(By.xpath("(//*[@type='checkbox'])[3]"));
 
-
+        // checkbox1 ve checkbox3  secili degil ise secin
         if (!checkBox1.isSelected() && !checkBox3.isSelected()){
             checkBox1.click();
             checkBox3.click();
