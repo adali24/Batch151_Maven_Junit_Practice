@@ -16,39 +16,91 @@ public class C01_WindowHandels extends TestBase {
     @Test
     public void test01() throws InterruptedException {
 // 'https://www.n11.com' adresine gidin
-        driver.get("https://www.n11.com");
-
-        String sayfa1Handle = driver.getWindowHandle();
-        Thread.sleep(2000);
-
-
         // arama motoruna 'Oppo' yazıp aratın
-        driver.findElement(By.xpath("//input[@id='searchData']")).sendKeys("Oppo" + Keys.ENTER);
-
-
-        Thread.sleep(2000);
-
-
         // ilk ürüne tıklayın
-        WebElement ilkUrun = driver.findElement(By.xpath("(//img[@class='lazy cardImage'])[1]"));
-        ilkUrun.click();
+        // ikinci sayfa Title'ının 'Türkiye' icerdigini test edin.
+        // ilk sayfaya donun ve Title'ını yazdırın
 
-        Thread.sleep(2000);
 
-        Set<String> windowHandleSeti = driver.getWindowHandles();
+            // 'https://www.n11.com' adresine gidin
+            driver.get("https://www.n11.com");
 
-        String sayfa2Handle = "";
+            String  sayfa1Handle = driver.getWindowHandle();
+            System.out.println("SAYFA1HANDLE: " + sayfa1Handle);
 
-        for (String each : windowHandleSeti) {
 
-            if (!each.equals((sayfa1Handle))) {
-                sayfa2Handle = each;
+
+
+
+            Thread.sleep(2000);
+
+
+            // arama motoruna 'Oppo' yazıp aratın
+            driver.findElement(By.xpath("//input[@id='searchData']")).sendKeys("Oppo" + Keys.ENTER);
+
+
+            Thread.sleep(2000);
+
+
+            // ilk ürüne tıklayın
+            WebElement ilkUrun = driver.findElement(By.xpath("(//img[@class='lazy cardImage'])[1]"));
+            ilkUrun.click();
+
+            Thread.sleep(2000);
+
+
+
+            Set<String> windowHandleSeti = driver.getWindowHandles();
+
+
+            String sayfa2Handle="";
+
+            for (String each:windowHandleSeti) {
+
+                if(!each.equals((sayfa1Handle))){
+                    sayfa2Handle = each;
+                }
+
+
             }
-        }
-        System.out.println("2. sayfa HANDLE: " + sayfa2Handle);
+
+            System.out.println("SAYFA2HANDLE: " + sayfa2Handle);
 
 
-// ilk sayfaya donun ve Title'ını yazdırın
+            driver.switchTo().window(sayfa2Handle);
+            // driver'ı yeni acılan sekmeye gecirdik
+
+
+            Thread.sleep(2000);
+
+
+
+
+
+            // ikinci sayfa Title'ının 'Türkiye' icerdigini test edin.
+
+            String ikinciSayfaTitle = driver.getTitle();
+
+            Assert.assertTrue(ikinciSayfaTitle.contains("Türkiye"));
+
+
+            Thread.sleep(2000);
+
+
+
+
+
+            // ilk sayfaya donun ve Title'ını yazdırın
+
+            driver.switchTo().window(sayfa1Handle);
+            // driver'ı ilk sayfaya gecirdik
+
+
+            String ilkSayfaTitle = driver.getTitle();
+            System.out.println("İLKSAYFATİTLE: " + ilkSayfaTitle);
+
+
+
 
         driver.switchTo().window(sayfa1Handle);
         System.out.println("Ilk sayfa title = " + driver.getTitle());
