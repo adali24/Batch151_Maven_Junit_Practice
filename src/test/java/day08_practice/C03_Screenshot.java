@@ -17,6 +17,12 @@ public class C03_Screenshot extends TestBase {
         // https://www.teknosa.com/ adresine gidin
         driver.get("https://www.teknosa.com/");
 
+        // cookies cikarsa kabul et
+        try {
+            driver.findElement(By.xpath("//div[@id='ins-editable-button-1580496494']")).click();
+        } catch (Exception e) {
+            System.out.println("cookies cıkmadı");
+        }
 
 
         // arama cubuguna oppo yazip enter'a basınız
