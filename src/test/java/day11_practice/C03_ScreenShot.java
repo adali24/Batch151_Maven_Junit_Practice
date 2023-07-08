@@ -10,6 +10,8 @@ import utilities.TestBase;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class C03_ScreenShot extends TestBase {
     @Test
@@ -26,9 +28,12 @@ public class C03_ScreenShot extends TestBase {
         driver.findElement(By.xpath("(//span[@class='a-size-base-plus a-color-base a-text-normal'])[1]")).click();
 
         // tüm sayfanın fotografını cekin
+        LocalDateTime date =LocalDateTime.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYMMddHHmmss");
+        String tarih = date.format(dtf);
 
 
-        String dosyaYolu = "target/ekranGoruntusu/Nutella.jpeg";
+        String dosyaYolu = "target/ekranGoruntusu/Nutella"+tarih+".jpeg";
         TakesScreenshot ts = (TakesScreenshot) driver;
         FileUtils.copyFile(ts.getScreenshotAs(OutputType.FILE), new File(dosyaYolu));
 
